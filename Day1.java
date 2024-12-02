@@ -7,13 +7,12 @@ public class Day1 {
     public static void main(String[] args) {
 
         ArrayList<String> fileData = getFileData("src/Day1Input.txt");
-        System.out.println(fileData);
         int answer = 0;
         for (int i = 0; i < fileData.size(); i++) {
             getAnswer(fileData.get(i));
         }
     }
-}
+
 
     public static ArrayList<String> getFileData(String fileName) {
         ArrayList<String> fileData = new ArrayList<String>();
@@ -33,11 +32,11 @@ public class Day1 {
     }
 
     public static int getAnswer(String line) {
+        int sumofDiff = 0;
         String[] split = line.split("   ");
         int firstL = Integer.parseInt(split[0].split("   ")[0]);
         int secondL = Integer.parseInt(split[0].split("   ")[1]);
         int diff = Math.abs(firstL - secondL);
-        return diff;
-    }
+        return sumofDiff += diff;
     }
 }
