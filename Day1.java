@@ -9,7 +9,7 @@ public class Day1 {
         ArrayList<String> fileData = getFileData("src/Day1Input.txt");
         int answer = 0;
         for (int i = 0; i < fileData.size(); i++) {
-            getAnswer(fileData.get(i));
+            answer += getAnswer(fileData.get(i));
         }
     }
 
@@ -32,11 +32,9 @@ public class Day1 {
     }
 
     public static int getAnswer(String line) {
-        int sumofDiff = 0;
         String[] split = line.split("   ");
         int firstL = Integer.parseInt(split[0].split("   ")[0]);
         int secondL = Integer.parseInt(split[0].split("   ")[1]);
-        int diff = Math.abs(firstL - secondL);
-        return sumofDiff += diff;
+        return Math.abs(firstL - secondL);
     }
 }
