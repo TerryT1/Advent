@@ -15,8 +15,8 @@ public class Day2 {
             if (safe(fileData.get(i))) {
                 total++;
             }
-            System.out.println(total);
         }
+        System.out.println(total);
     }
 
     public static ArrayList<String> getFileData(String fileName) {
@@ -42,7 +42,7 @@ public class Day2 {
             if (Integer.parseInt(splitData[i]) > Integer.parseInt(splitData[i + 1])) {
                 return true;
             }
-            else if (Integer.parseInt(splitData[i]) < Integer.parseInt(splitData[i + 1])) {
+            if (Integer.parseInt(splitData[i]) < Integer.parseInt(splitData[i + 1])) {
                 return true;
             }
         }
