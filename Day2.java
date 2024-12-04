@@ -10,9 +10,10 @@ public class Day2 {
         System.out.println(fileData);
         // you now have an ArrayList of Strings for each number in the file
         // do Advent 2020 day 1!
+        boolean a = true;
         int total = 0;
         for (int i = 0; i < fileData.size(); i++) {
-            if (safe(fileData.get(i))) {
+            if (safe(fileData.get(i)) == a) {
                 total++;
             }
         }
@@ -39,12 +40,13 @@ public class Day2 {
     public static boolean safe(String line) {
         String[] splitData = line.split(" ");
         for (int i = 0; i < splitData.length; i++) {
-            if (Integer.parseInt(splitData[i]) > Integer.parseInt(splitData[i + 1])) {
+            if ((Integer.parseInt(splitData[i]) > Integer.parseInt(splitData[i + 1]) && (Integer.parseInt(splitData[i])  <= Integer.parseInt(splitData[i + 1]) + 3))) {
                 return true;
             }
-            if (Integer.parseInt(splitData[i]) < Integer.parseInt(splitData[i + 1])) {
+            else if ((Integer.parseInt(splitData[i]) < Integer.parseInt(splitData[i + 1]) && (Integer.parseInt(splitData[i]) + 3 >= Integer.parseInt(splitData[i + 1])))) {
                 return true;
             }
+            return false;
         }
         return false;
     }
