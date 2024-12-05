@@ -40,11 +40,16 @@ public class Day2 {
     public static boolean safe(String line) {
         String[] splitData = line.split(" ");
         for (int i = 0; i < splitData.length; i++) {
-            if ((Integer.parseInt(splitData[i]) > Integer.parseInt(splitData[i + 1]) && (Integer.parseInt(splitData[i])  <= Integer.parseInt(splitData[i + 1]) + 3))) {
-                return true;
+            if ((Integer.parseInt(splitData[i]) > Integer.parseInt(splitData[i + 1]))) {
+                if ((Integer.parseInt(splitData[i]) - Integer.parseInt(splitData[i + 1]) < 3)) {
+                    return true;
+                }
             }
-            else if ((Integer.parseInt(splitData[i]) < Integer.parseInt(splitData[i + 1]) && (Integer.parseInt(splitData[i]) + 3 >= Integer.parseInt(splitData[i + 1])))) {
-                return true;
+
+            if ((Integer.parseInt(splitData[i]) < Integer.parseInt(splitData[i + 1]))) {
+                if ((Integer.parseInt(splitData[i + 1]) - Integer.parseInt(splitData[i]) < 3)) {
+                    return true;
+                }
             }
             return false;
         }
