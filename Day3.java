@@ -9,11 +9,11 @@ public class Day3 {
     public static void main(String[] args) {
 
         ArrayList<String> fileData = getFileData("src/Day2Input.txt");
-        System.out.println(fileData);
         ArrayList<String> allMatches = new ArrayList<String>();
-        String searchString = "xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))";
-        String regex = "mul\\([1-9],[1-9]\\)";
-        Matcher m = Pattern.compile(regex).matcher(fileData);
+        String searchString = String.valueOf(fileData);
+        String regex = "mul\\([0-9], [0-9]|[1-9][0-9][0-9]\\)";
+
+        Matcher m = Pattern.compile(regex).matcher(searchString);
         while (m.find()) {
             allMatches.add(m.group());
         }
