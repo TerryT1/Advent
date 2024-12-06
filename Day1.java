@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Day1 {
     public static void main(String[] args) {
-        ArrayList<String> fileData = getFileData("src/Day1Input.txt");
+        ArrayList<String> fileData = getFileData("Day1Input.txt");
 
         ArrayList<Integer> left = new ArrayList<>();
         ArrayList<Integer> right = new ArrayList<>();
@@ -22,7 +22,14 @@ public class Day1 {
 
         int sum = 0;
         for (int i = 0; i < left.size(); i++) {
-            sum += Math.abs(left.get(i) - right.get(i));
+            int count = 0;
+            for (int j = 0; j < right.size(); j++) {
+                if (left.get(i).equals(right.get(j))) {
+                    count++;
+                }
+
+            }
+            sum += left.get(i) * count;
         }
 
         System.out.println(sum);
