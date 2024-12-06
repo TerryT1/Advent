@@ -8,10 +8,10 @@ import java.util.regex.Pattern;
 public class Day3 {
     public static void main(String[] args) {
 
-        ArrayList<String> fileData = getFileData("src/Day2Input.txt");
+        ArrayList<String> fileData = getFileData("Day3Input.txt");
         ArrayList<String> allMatches = new ArrayList<String>();
         String searchString = String.valueOf(fileData);
-        String regex = "mul\\([0-9], [0-9]|[1-9][0-9][0-9]\\)";
+        String regex = "mul\\(([1-9][0-9]{0,2}),([1-9][0-9]{0,2})\\)";
 
         Matcher m = Pattern.compile(regex).matcher(searchString);
         while (m.find()) {
