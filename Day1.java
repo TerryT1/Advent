@@ -1,40 +1,47 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Day1 {
     public static void main(String[] args) {
-
         ArrayList<String> fileData = getFileData("src/Day1Input.txt");
-        int answer = 0;
-        for (int i = 0; i < fileData.size(); i++) {
-            answer += getAnswer(fileData.get(i));
+
+        ArrayList<Integer> left = new ArrayList<>();
+        ArrayList<Integer> right = new ArrayList<>();
+
+        for (String line : fileData) {
+            String[] numbers = line.split("\\s+");
+            left.add(Integer.parseInt(numbers[0]));
+            right.add(Integer.parseInt(numbers[1]));
         }
+
+        Collections.sort(left);
+        Collections.sort(right);
+
+        int sum = 0;
+        for (int i = 0; i < left.size(); i++) {
+            sum += Math.abs(left.get(i) - right.get(i));
+        }
+
+        System.out.println(sum);
     }
 
-
     public static ArrayList<String> getFileData(String fileName) {
-        ArrayList<String> fileData = new ArrayList<String>();
+        ArrayList<String> fileData = new ArrayList<>();
         try {
             File f = new File(fileName);
             Scanner s = new Scanner(f);
             while (s.hasNextLine()) {
                 String line = s.nextLine();
-                if (!line.equals(""))
+                if (!line.equals("")) {
                     fileData.add(line);
+                }
             }
             return fileData;
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             return fileData;
         }
-    }
-
-    public static int getAnswer(String line) {
-        String[] split = line.split("   ");
-        int firstL = Integer.parseInt(split[0].split("   ")[0]);
-        int secondL = Integer.parseInt(split[0].split("   ")[1]);
-        return Math.abs(firstL - secondL);
     }
 }
