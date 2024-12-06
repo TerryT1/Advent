@@ -12,9 +12,9 @@ public class Day1 {
         ArrayList<Integer> right = new ArrayList<>();
 
         for (String line : fileData) {
-            String[] numbers = line.split("\\s+");
-            left.add(Integer.parseInt(numbers[0]));
-            right.add(Integer.parseInt(numbers[1]));
+            String[] num = line.split("\\s+");
+            left.add(Integer.parseInt(num[0]));
+            right.add(Integer.parseInt(num[1]));
         }
 
         Collections.sort(left);
