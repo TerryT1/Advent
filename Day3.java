@@ -18,6 +18,15 @@ public class Day3 {
             allMatches.add(m.group());
         }
         System.out.println(allMatches);
+        int sum = 0;
+        for (int i = 0; i < allMatches.size(); i++) {
+            int num1 = Integer.parseInt((allMatches.get(i).substring(4, allMatches.get(i).indexOf(","))));
+            int num2 = Integer.parseInt((allMatches.get(i).substring(allMatches.get(i).indexOf(",") + 1, allMatches.get(i).indexOf(")"))));
+            sum += num1 * num2;
+        }
+        System.out.println(sum);
+
+
     }
 
     public static ArrayList<String> getFileData(String fileName) {
