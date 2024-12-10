@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Day4 {
     public static void main(String[] args) {
-        ArrayList<String> fileData = getFileData("Day3Input.txt");
+        ArrayList<String> fileData = getFileData("src/Day3Input.txt");
 
         int sum = 0;
         int rows = fileData.size();
