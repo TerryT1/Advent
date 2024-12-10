@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Day4 {
     public static void main(String[] args) {
-        ArrayList<String> fileData = getFileData("src/Day4Input.txt");
+        ArrayList<String> fileData = getFileData("Day3Input.txt");
 
         // build a 2D Array based on the length of each string and the size of the list
         // e.g
@@ -20,36 +20,38 @@ public class Day4 {
 
         for (int r = 0; r < grid.length; r++) {
             for (int c = 0; c < grid[0].length; c++) {
-                grid[r][c] = fileData.get(r).substring(c, c+1);
+                grid[r][c] = fileData.get(r).substring(c, c + 1);
             }
         }
         for (int r = 0; r < grid.length; r++) {
             for (int c = 0; c < grid[0].length; c++) {
-                if (r < grid.length - 3 && c + 3 < grid[0].length - 3) {
-                    if ((grid[r][c] + grid[r][c + 1] + grid[r][c + 2] + grid[r][c + 3]).equals("XMAS")) {
-                        sum++;
-                    }
-                    else if ((grid[r][c] + grid[r + 1][c] + grid[r + 2][c] + grid[r + 3][c]).equals("XMAS")) {
-                        sum++;
-                    }
-                    else if ((grid[r][c] + grid[r + 1][c + 1] + grid[r + 2][c + 2] + grid[r + 3][c + 3]).equals("XMAS")) {
-                        sum++;
-                    }
-                    else if (r > 2 && c > 2) {
-                       if ((grid[r][c] + grid[r - 1][c - 1] + grid[r - 2][c - 2] + grid[r - 3][c - 3]).equals("XMAS")) {
-                            sum++;
-                    }
-                    }
 
+                if (c + 3 < grid[0].length && (grid[r][c] + grid[r][c + 1] + grid[r][c + 2] + grid[r][c + 3]).equals("XMAS")) {
+                    sum++;
+                }
 
+                if (r + 3 < grid.length && (grid[r][c] + grid[r + 1][c] + grid[r + 2][c] + grid[r + 3][c]).equals("XMAS")) {
+                    sum++;
+                }
+
+                if (r + 3 < grid.length && c + 3 < grid[0].length && (grid[r][c] + grid[r + 1][c + 1] + grid[r + 2][c + 2] + grid[r + 3][c + 3]).equals("XMAS")) {
+                    sum++;
+                }
+
+                if (r + 3 < grid.length && c - 3 >= 0 && (grid[r][c] + grid[r + 1][c - 1] + grid[r + 2][c - 2] + grid[r + 3][c - 3]).equals("XMAS")) {
+                    sum++;
                 }
             }
         }
+
         System.out.println(sum);
+    }
+
+
 
 
         // "grid" represents a 2D array of Strings built from the input file
-    }
+
 
     public static ArrayList<String> getFileData(String fileName) {
         ArrayList<String> fileData = new ArrayList<String>();
