@@ -8,14 +8,15 @@ import java.util.regex.Pattern;
 public class Day5 {
     public static void main(String[] args) {
 
-        ArrayList<String> fileData = getFileData("src/Day1Input.txt");
+        ArrayList<String> fileData = getFileData("src/Day5Input.txt");
         ArrayList<String> allMatches = new ArrayList<String>();
 
         // you now have an ArrayList of Strings for each number in the file
         // do Advent 2020 day 1!
 
         String searchString = String.valueOf(fileData);
-        String regex = "\\([1-9][0-9]{0,1})|([1-9][0-9]{0,1}\\";
+        String regex = "[1-9][0-9]|[1-9][0-9]";
+
         Matcher m = Pattern.compile(regex).matcher(searchString);
         while (m.find()) {
             allMatches.add(m.group());
