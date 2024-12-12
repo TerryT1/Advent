@@ -7,9 +7,6 @@ public class Day6 {
     public static void main(String[] args) {
 
         ArrayList<String> fileData = getFileData("src/Day6Input.txt");
-        System.out.println(fileData);
-
-        int sum = 0;
         int rows = fileData.size();
         int columns = fileData.get(0).length();
         String[][] grid = new String[rows][columns];
@@ -19,18 +16,20 @@ public class Day6 {
                 grid[r][c] = fileData.get(r).substring(c, c + 1);
             }
         }
+        int sum = 0;
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < columns; c++) {
                 if (grid[r][c].equals("^")) {
-                    for (grid[r][c].equals("^"); !grid[r][c].equals("#"); c++) {
+                    for (grid[r][c].equals("^"); !grid[r][c].equals("#"); r--) {
                         grid[r][c].equals("^");
                         sum++;
                     }
                 }
             }
-            System.out.println(sum);
         }
+        System.out.println(sum);
     }
+
 
     public static ArrayList<String> getFileData(String fileName) {
         ArrayList<String> fileData = new ArrayList<String>();
@@ -43,9 +42,10 @@ public class Day6 {
                     fileData.add(line);
             }
             return fileData;
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             return fileData;
         }
     }
 }
+
+
