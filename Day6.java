@@ -19,14 +19,33 @@ public class Day6 {
         int sum = 0;
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < columns; c++) {
-                if (grid[r][c].equals("^")) {
-                    for (grid[r][c].equals("^"); !grid[r][c].equals("#"); r--) {
-                        grid[r][c].equals("^");
-                        sum++;
+                    if (grid[r][c].equals("^") && !grid[r][c].equals(grid[rows - 1][c]) && !grid[r][c].equals(grid[r][columns - 1])) {
+                        int tempR = r;
+                        int tempC = c;
+                        while (tempR > 0 && !grid[tempR - 1][tempC].equals("#")) {
+                            grid[tempR][tempC].equals("^");
+                            sum++;
+                            tempR--;
+                        }
+                        while (tempC > 0 && !grid[tempR][tempC + 1].equals("#")) {
+                            grid[tempR][tempC].equals("^");
+                            sum++;
+                            tempC++;
+                        }
+                        while (tempR > 0 && !grid[tempR + 1][tempC].equals("#")) {
+                            grid[tempR][tempC].equals("^");
+                            sum++;
+                            tempR++;
+                        }
+                        while (tempC > 0 && !grid[tempR][tempC - 1].equals("#")) {
+                            grid[tempR][tempC].equals("^");
+                            sum++;
+                            tempC--;
+                        }
+
                     }
                 }
             }
-        }
         System.out.println(sum);
     }
 
@@ -47,5 +66,4 @@ public class Day6 {
         }
     }
 }
-
 
