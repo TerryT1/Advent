@@ -10,12 +10,15 @@ public class Day5 {
 
         ArrayList<String> fileData = getFileData("src/Day5Input.txt");
         ArrayList<String> allMatches = new ArrayList<String>();
+        ArrayList<String> allMatches2 = new ArrayList<String>();
+        ArrayList<String> allMatches3 = new ArrayList<String>();
+
 
         // you now have an ArrayList of Strings for each number in the file
         // do Advent 2020 day 1!
 
         String searchString = String.valueOf(fileData);
-        String regex = "[1-9][0-9]|[1-9][0-9]";
+        String regex = "\\d+\\|\\d+";
 
         Matcher m = Pattern.compile(regex).matcher(searchString);
         while (m.find()) {
@@ -23,6 +26,23 @@ public class Day5 {
         }
         System.out.println(allMatches);
 
+        String searchString2 = String.valueOf(allMatches);
+        String regex2 = "[1-9][0-9]";
+
+        Matcher m2 = Pattern.compile(regex2).matcher(searchString2);
+        while (m2.find()) {
+            allMatches2.add(m2.group());
+        }
+        System.out.println(allMatches2);
+
+        for (int i = allMatches.size() + 1; i < fileData.size(); i++) {
+            for (int j = 0; j < allMatches.size(); j++) {
+                String[] spliter = allMatches.get(j).split("|");
+                int num1 = Integer.parseInt(spliter[0]);
+                int num2 = Integer.parseInt(spliter[1]);
+                System.out.println(num1);
+            }
+        }
     }
 
     public static ArrayList<String> getFileData(String fileName) {
