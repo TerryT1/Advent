@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class Day5 {
     public static void main(String[] args) {
 
-        ArrayList<String> fileData = getFileData("src/Day5Input.txt");
+        ArrayList<String> fileData = getFileData("Day5Input.txt");
         ArrayList<String> allMatches = new ArrayList<String>();
         ArrayList<String> allMatches2 = new ArrayList<String>();
         ArrayList<String> allMatches3 = new ArrayList<String>();
@@ -37,7 +37,7 @@ public class Day5 {
 
         for (int i = allMatches.size() + 1; i < fileData.size(); i++) {
             for (int j = 0; j < allMatches.size(); j++) {
-                String[] spliter = allMatches.get(j).split("|");
+                String[] spliter = allMatches.get(j).split("\\|");
                 int num1 = Integer.parseInt(spliter[0]);
                 int num2 = Integer.parseInt(spliter[1]);
                 System.out.println(num1);
