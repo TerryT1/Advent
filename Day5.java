@@ -10,7 +10,6 @@ public class Day5 {
 
         ArrayList<String> fileData = getFileData("src/Day5Input.txt");
         ArrayList<String> allMatches = new ArrayList<String>();
-        ArrayList<String> allMatches2 = new ArrayList<String>();
 
         String searchString = String.valueOf(fileData);
         String regex = "\\d+\\|\\d+";
@@ -21,6 +20,7 @@ public class Day5 {
         }
         System.out.println(allMatches);
 
+        ArrayList<String> allMatches2 = new ArrayList<String>();
         String searchString2 = String.valueOf(allMatches);
         String regex2 = "[1-9][0-9]";
 
@@ -32,19 +32,42 @@ public class Day5 {
 
         int sum = 0;
 
-        for (int i = allMatches.size() + 1; i < fileData.size(); i++) {
+        for (int i = allMatches.size(); i < fileData.size(); i++) {
+            String[] pages = fileData.get(i).split(",");
+            boolean correct = true;
+
             for (int j = 0; j < allMatches.size(); j++) {
-                String[] spliter = allMatches.get(j).split("\\|");
-                int num1 = Integer.parseInt(spliter[0]);
-                int num2 = Integer.parseInt(spliter[1]);
-                if (fileData.get(allMatches.size() + 1).substring(0, fileData.get(i).length()).indexOf(num2) > fileData.get(allMatches.size() + 1).substring(0, fileData.get(i).length()).indexOf(num1) )
-                    sum += Integer.parseInt(fileData.get(allMatches.size() + 1).substring((fileData.get(i).length() + 1)/2 - 1), (fileData.get(i).length() + 1)/2);
+                String[] ruleParts = allMatches.get(j).split("\\|");
+                int num1 = Integer.parseInt(ruleParts[0]);
+                int num2 = Integer.parseInt(ruleParts[1]);
+
+                int num1i = indexOf(pages, num1);
+                int num2i = indexOf(pages, num2);
+
+                if (num1i != -1 && num2i != -1 && num1i > num2i) {
+                    correct = false;
+                    break;
                 }
             }
-        System.out.println(sum);
+
+            if (correct) {
+                int middleIndex = pages.length / 2;
+                int middlePage = Integer.parseInt(pages[middleIndex]);
+                sum += middlePage;
+            }
         }
 
+        System.out.println(sum);
+    }
 
+    public static int indexOf(String[] pages, int page) {
+        for (int i = 0; i < pages.length; i++) {
+            if (Integer.parseInt(pages[i]) == page) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     public static ArrayList<String> getFileData(String fileName) {
         ArrayList<String> fileData = new ArrayList<String>();
@@ -53,13 +76,13 @@ public class Day5 {
             Scanner s = new Scanner(f);
             while (s.hasNextLine()) {
                 String line = s.nextLine();
-                if (!line.equals(""))
+                if (!line.equals("")) {
                     fileData.add(line);
+                }
             }
+        } catch (FileNotFoundException e) {
             return fileData;
         }
-        catch (FileNotFoundException e) {
-            return fileData;
-        }
+        return fileData;
     }
 }
