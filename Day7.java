@@ -2,7 +2,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Day7 {
@@ -10,19 +9,25 @@ public class Day7 {
 
         ArrayList<String> fileData = getFileData("src/Day7Input.txt");
         System.out.println(fileData);
-        for (String line: fileData) {
+        int lineTotal = 0;
+        for (String line : fileData) {
             String[] splitter = line.split(": ");
-            int num1 = Integer.parseInt(splitter[0]);
-            String[] commaSplitter = splitter[1].split(" ");
-            int lineTotal = 0;
-            for (int i = 0; i < commaSplitter.length && lineTotal != num1; i++) {
-                lineTotal += Integer.parseInt(commaSplitter[i]);
-                lineTotal *= Integer.parseInt(commaSplitter[i]);
+            float num1 = Float.parseFloat(splitter[0]);
+            String[] splitter2 = splitter[1].split(" ");
+            for (int i = 0; i < splitter2.length && lineTotal != num1; i++) {
+                lineTotal += Integer.parseInt(splitter2[i]);
+                if (lineTotal != num1) {
+                    lineTotal = 0;
+                }
             }
         }
-
-
+        System.out.println(lineTotal);
     }
+
+
+
+
+
 
     public static ArrayList<String> getFileData(String fileName) {
         ArrayList<String> fileData = new ArrayList<String>();
